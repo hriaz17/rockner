@@ -3,7 +3,7 @@ import json
 
 
 
-DATASET_NAME = "ontonotes_english"
+DATASET_NAME = "conll2003"
 DATASET_TYPE = "test"
 ENTITY_TYPE_LIST_WITHOUT_PERSON = {"ontonotes_names": ['GPE', 'ORG', 'FAC', 'LOC', 'NORP', 'LAW', 'EVENT',
                                                        'WORK_OF_ART', 'PRODUCT', 'LANGUAGE'],

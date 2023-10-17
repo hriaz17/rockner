@@ -2,8 +2,10 @@ import random
 import sys
 import json
 from tqdm import tqdm
+import nltk
+nltk.download('stopwords')
 
-DATASET_NAME = "ontonotes_english"
+DATASET_NAME = "conll2003"
 DATASET_TYPE = "test"
 ARGS_ENTITY_LEVEL_BASIC_CONCURRENT = dict(attack_num=5, seeds=[0, 1, 2, 3, 4], sampled_pct=[0.2, 0.4, 0.6, 0.8, 1.0])
 ARGS = ARGS_ENTITY_LEVEL_BASIC_CONCURRENT
@@ -144,7 +146,7 @@ def output_jsonl_files_concurrent(path, all_adver_lists, attack_round):
 
 
 def main():
-    attack_round = int(sys.argv[1])
+    attack_round = 0#int(sys.argv[1])
 
     gen_ontorock_c(attack_round)
 

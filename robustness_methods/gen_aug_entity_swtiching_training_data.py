@@ -1,13 +1,15 @@
 import os
 import random
 import string
+import sys
+sys.path.append("../tools")
 import adver_tools
 from copy import deepcopy
 from tqdm import tqdm
 
 
 def gen_aug_entity_switching_data():
-    all_ori_sents, all_ori_tags = adver_tools.read_data("../data/ontonotes_english/train.txt")
+    all_ori_sents, all_ori_tags = adver_tools.read_data("../data/conll2003/train.txt")
     entities_by_type, entities_by_sid, entities_set = adver_tools.update_NER_dict(all_ori_sents, all_ori_tags)
     all_aug_sents, all_aug_tags = [], []
     for sent_id, (sent, tags) in enumerate(tqdm(zip(all_ori_sents, all_ori_tags), total=len(all_ori_sents))):
@@ -51,8 +53,8 @@ def output_aug_entity_switching_data(all_ori_sents, all_ori_tags, all_aug_sents,
 def main():
     random.seed(42)
 
-    if not os.path.exists("../data/ontonotes_english_aug_entity_switching"):
-        os.system("mkdir -p ../data/ontonotes_english_aug_entity_switching/")
+    #if not os.path.exists("../data/conll_english_aug_entity_switching"):
+    #    os.system("mkdir -p ../data/conll_english_aug_entity_switching/")
 
     all_ori_sents, all_ori_tags, all_aug_sents, all_aug_tags = gen_aug_entity_switching_data()
 

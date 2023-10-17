@@ -2,6 +2,7 @@ import random
 from tqdm import tqdm
 import sys
 import nltk
+nltk.download('averaged_perceptron_tagger')
 from happytransformer import HappyROBERTA
 
 
@@ -11,7 +12,7 @@ sys.path.append("../../tools")
 import adver_pipeline
 import adver_tools
 
-DATASET_NAME = "ontonotes_english"
+DATASET_NAME = "conll2003"
 DATASET_TYPE = "dev"
 DATA_FILE_PATH = "../../data/" + DATASET_NAME + "/" + DATASET_TYPE + ".txt"
 MODEL = "blstm_crf"
@@ -34,7 +35,13 @@ else:
     CONTEXT_REPLACED_DATA_PATH = OUTPUT_PATH + "unfiltered.txt"
 
 
-POS_TAGS_LIST = ["JJ", "JJR", "JJS", "NN", "NNP", "NNS", "RB", "RBR", "RBS", "VB", "VBD", "VBG", "VBN", "VBP", "VBZ"]
+#POS_TAGS_LIST = ["JJ", "JJR", "JJS", "NN", "NNP", "NNS", "RB", "RBR", "RBS", "VB", "VBD", "VBG", "VBN", "VBP", "VBZ"]
+
+POS_TAGS_LIST = {'"', "''", '#', '$', '(', ')', ',', '.', ':', '``', 'CC', 'CD', 'DT',
+ 'EX', 'FW', 'IN', 'JJ', 'JJR', 'JJS', 'LS', 'MD', 'NN', 'NNP', 'NNPS',
+ 'NNS', 'NN|SYM', 'PDT', 'POS', 'PRP', 'PRP$', 'RB', 'RBR', 'RBS', 'RP',
+ 'SYM', 'TO', 'UH', 'VB', 'VBD', 'VBG', 'VBN', 'VBP', 'VBZ', 'WDT',
+ 'WP', 'WP$', 'WRB'}
 
 mlm_model = HappyROBERTA("roberta-base")
 
